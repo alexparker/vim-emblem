@@ -37,7 +37,7 @@ hi def link eblInlineText eblRaw
 
 syn cluster eblHbsComponent contains=eblHbsArg,eblHbsAttr,eblHbsTextOp,eblLineOp
 
-syn match eblHbsOp             '\v\s*\=+'                                                      nextgroup=@eblHbsHelpers     skipwhite contained display
+syn match eblHbsOp             '\v\s*\=|\%+'                                                   nextgroup=@eblHbsHelpers     skipwhite contained display
 syn match eblHbsHelper         '\v\w(\w|-|\.|\/)*'                                             nextgroup=@eblHbsComponent   skipwhite contained display
 syn match eblHbsTextOp         '|'                                                             nextgroup=eblHbsText                   contained display
 syn match eblHbsText           '.*'                                                                                                   contained display
@@ -74,7 +74,7 @@ hi def link eblHbsAsBlockSecondArg eblLiteral
 hi def link eblHbsAsBlockEndArg    eblOperator
 
 syn match eblHbsArg            /\v\s*((["'])[^\2]{-}\2|(\w|\.|-|\>)+)/                         nextgroup=@eblHbsComponent   skipwhite contained display
-syn match eblHbsAttr           '\v\s*(\w|-)+\=@='                      contains=eblHbsAttrBind nextgroup=eblHbsAttrOp                 contained display
+syn match eblHbsAttr           '\v\s*[@]?(\w|-)+\=@='                  contains=eblHbsAttrBind nextgroup=eblHbsAttrOp                 contained display
 syn match eblHbsAttrBind       /\v<(\w|-)+Bind>/                                                                                      contained display
 syn match eblHbsAttrOp         '='                                                             nextgroup=eblHbsAttrLit                contained display
 syn match eblHbsAttrLit        /\v(["'])[^\1]{-}\1|[^\.: ]+/             contains=eblItpl        nextgroup=@eblHbsComponent   skipwhite contained display
@@ -140,7 +140,7 @@ hi def link eblViewClass    eblClass
 syn cluster eblTag contains=eblKnownTag,eblCustomTag
 
 syn match eblKnownTag '\v<(figcaption|blockquote|plaintext|textarea|progress|optgroup|noscript|noframes|frameset|fieldset|datalist|colgroup|basefont|summary|section|marquee|listing|isindex|details|command|caption|bgsound|article|address|acronym|strong|strike|spacer|source|select|script|output|option|object|legend|keygen|iframe|hgroup|header|footer|figure|center|canvas|button|applet|video|track|title|thead|tfoot|tbody|table|style|small|param|meter|label|input|frame|embed|blink|audio|aside|time|span|samp|ruby|nobr|meta|menu|mark|main|link|html|head|form|font|data|code|cite|body|base|area|abbr|xmp|wbr|var|sup|sub|pre|nav|map|kbd|ins|img|div|dir|dfn|del|col|big|bdo|bdi|ul|tt|tr|th|td|rt|rp|ol|li|hr|h6|h5|h4|h3|h2|h1|em|dt|dl|dd|br|u|s|q|p|i|b|a)>' nextgroup=@eblComponent contained display
-syn match eblCustomTag '%[a-z][a-z0-9-]*' nextgroup=@eblComponent contained display
+syn match eblCustomTag '% \?[a-zA-Z][a-zA-Z0-9-]*' nextgroup=@eblComponent contained display
 hi def link eblKnownTag  eblTag
 hi def link eblCustomTag eblTag
 
